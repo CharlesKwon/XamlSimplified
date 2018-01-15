@@ -1,0 +1,68 @@
+﻿<Window x:Class="Sample._005_System.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+        xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib"
+        xmlns:local="clr-namespace:Sample._005_System"
+        mc:Ignorable="d"
+        Title="MainWindow" Width="444" Height="222">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <!--Resource 정의-->
+        <Grid.Resources>
+            <sys:Char x:Key="Char">A</sys:Char>
+            <sys:String x:Key="String">Charles</sys:String>
+            <sys:Int32 x:Key="Int32">123456789</sys:Int32>
+            <sys:Boolean x:Key="Boolean">true</sys:Boolean>
+            <sys:DateTime x:Key="DateTime">2018/12/25</sys:DateTime>
+            <sys:TimeSpan x:Key="TimeSpan">12:24:55</sys:TimeSpan>
+            <sys:DayOfWeek x:Key="DayOfWeek">6</sys:DayOfWeek>
+        </Grid.Resources>
+
+        <!--목록내 ItemsSource 정의-->
+        <ListBox>
+            <ListBox.ItemsSource>
+                <x:Array Type="{x:Type sys:Object}">
+                    <sys:Char>A</sys:Char>
+                    <sys:String>Charles</sys:String>
+                    <sys:Int32>123456789</sys:Int32>
+                    <sys:Boolean>true</sys:Boolean>
+                    <sys:DateTime>2018/12/25</sys:DateTime>
+                    <sys:TimeSpan>12:24:55</sys:TimeSpan>
+                    <sys:DayOfWeek>6</sys:DayOfWeek>
+                </x:Array>
+            </ListBox.ItemsSource>
+        </ListBox>
+
+        <!--목록내 Items 정의-->
+        <ListBox Grid.Column="1">
+            <sys:Char>A</sys:Char>
+            <sys:String>Charles</sys:String>
+            <sys:Int32>123456789</sys:Int32>
+            <sys:Boolean>true</sys:Boolean>
+            <sys:DateTime>2018/12/25</sys:DateTime>
+            <sys:TimeSpan>12:24:55</sys:TimeSpan>
+            <x:Null/>
+            <x:Static Member="sys:String.Empty"/>
+            <sys:DayOfWeek>6</sys:DayOfWeek>
+        </ListBox>
+
+        <!--목록내 Items 정의 : Binding Key-->
+        <ListBox Grid.Column="2">
+            <TextBlock Text="{Binding Source={StaticResource Char}}"/>
+            <TextBlock Text="{Binding Source={StaticResource String}}"/>
+            <TextBlock Text="{Binding Source={StaticResource Int32}, StringFormat=전화 : \{0:(000)\-000\-0000\}}"/>
+            <TextBlock Text="{Binding Source={StaticResource Boolean}}"/>
+            <TextBlock Text="{Binding Source={StaticResource DateTime}, StringFormat=날짜 : {0:yyyy/MM/dd}, ConverterCulture=ko-KR}"/>
+            <TextBlock Text="{Binding Source={StaticResource TimeSpan}, StringFormat=hh\\:mm}"/>
+            <TextBlock Text="{Binding Source={StaticResource DayOfWeek}}"/>
+        </ListBox>
+    </Grid>
+</Window>

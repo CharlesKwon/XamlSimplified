@@ -1,0 +1,24 @@
+﻿<Window x:Class="Sample._001_EscapingCurlyBraces.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sample._001_EscapingCurlyBraces"
+        mc:Ignorable="d"
+        Title="MainWindow" Width="400" Height="300">
+    <Grid>
+
+        <StackPanel Margin="10">
+
+            <!--Markup extension error-->
+            <!--<TextBlock Text="{문자열}"/>-->
+
+            <!--방법 1 : Escape 문자열 사용-->
+            <TextBlock Text="{}{문자열}"/>
+
+            <!--방법 2 : Property element 문법 사용-->
+            <TextBlock>{문자열}</TextBlock>
+
+        </StackPanel>
+    </Grid>
+</Window>

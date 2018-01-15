@@ -1,0 +1,63 @@
+﻿<Window x:Class="Sample._010_DataTrigger.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sample._010_DataTrigger"
+        mc:Ignorable="d"
+        Title="MainWindow" Width="400" Height="200">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.Resources>
+            <Style x:Key="Style_DataTriggerTextBox">
+                <Style.Triggers>
+                    <!-- Type 데이타 트리거 -->
+                    <DataTrigger Binding="{Binding Type}" Value="Good">
+                        <Setter Property="TextBox.Foreground" Value="LimeGreen" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Type}" Value="Bad">
+                        <Setter Property="TextBox.Foreground" Value="Red" />
+                    </DataTrigger>
+
+                    <!-- 멀티 데이타 트리거 -->
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding Type}" Value="Good"/>
+                            <Condition Binding="{Binding Text, RelativeSource={RelativeSource Self}}" Value="Good"/>
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="TextBox.Foreground" Value="LimeGreen"/>
+                        <Setter Property="TextBox.FontWeight" Value="Bold"/>
+                    </MultiDataTrigger>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding Type}" Value="Bad"/>
+                            <Condition Binding="{Binding Text, RelativeSource={RelativeSource Self}}" Value="Bad"/>
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="TextBox.Foreground" Value="Red"/>
+                        <Setter Property="TextBox.FontWeight" Value="Bold"/>
+                    </MultiDataTrigger>
+                </Style.Triggers>
+
+                <Setter Property="Control.Width" Value="60"/>
+                <Setter Property="Control.Height" Value="30"/>
+            </Style>
+        </Grid.Resources>
+
+        <TextBox x:Name="txbGood" Style="{StaticResource Style_DataTriggerTextBox}"
+                 Text="Good">
+            <TextBox.DataContext>
+                <local:SampleData Type="Good"/>
+            </TextBox.DataContext>
+        </TextBox>
+        <TextBox x:Name="txbBad" Style="{StaticResource Style_DataTriggerTextBox}"
+                 Text="Bad" Grid.Column="1">
+            <TextBox.DataContext>
+                <local:SampleData Type="Bad"/>
+            </TextBox.DataContext>
+        </TextBox>
+    </Grid>
+</Window>

@@ -1,0 +1,59 @@
+﻿<Window x:Class="Sample._006_ClassModel.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sample._006_ClassModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="200" Width="400">
+    <Window.Resources>
+        <DataTemplate x:Key="DataTemplate_ListBoxItem">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding RealName}" Margin="0,0,10,0"/>
+                <TextBlock Text="{Binding Age}"/>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.Resources>
+            <x:Array x:Key="Peoples" Type="{x:Type local:Person}">
+                <local:Person RealName="홍길동" Age="40"/>
+                <local:Person RealName="박철수" Age="30"/>
+                <local:Person RealName="김영희" Age="20"/>
+            </x:Array>
+
+            <local:Family x:Key="Family"/>
+        </Grid.Resources>
+
+        <ListBox ItemsSource="{Binding Source={StaticResource Peoples}}" 
+                 ItemTemplate="{DynamicResource DataTemplate_ListBoxItem}"/>
+
+        <ListBox ItemsSource="{Binding Source={StaticResource Family}}" 
+                 ItemTemplate="{DynamicResource DataTemplate_ListBoxItem}" 
+                 Grid.Column="1"/>
+
+        <ListBox ItemTemplate="{DynamicResource DataTemplate_ListBoxItem}" 
+                 Grid.Column="2">
+            <ListBox.ItemsSource>
+                <x:Array Type="{x:Type local:Person}">
+                    <local:Person RealName="홍길동" Age="40"/>
+                    <local:Person RealName="박철수" Age="30"/>
+                    <local:Person RealName="김영희" Age="20"/>
+                </x:Array>
+            </ListBox.ItemsSource>
+        </ListBox>
+
+        <ListBox ItemsSource="{Binding Source={StaticResource Family}}" 
+                 DisplayMemberPath="RealName"
+                 Grid.Column="3"/>
+
+    </Grid>
+</Window>

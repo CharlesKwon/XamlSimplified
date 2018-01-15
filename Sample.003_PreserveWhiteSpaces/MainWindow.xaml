@@ -1,0 +1,44 @@
+﻿<Window x:Class="Sample._003_PreserveWhiteSpaces.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+        xmlns:local="clr-namespace:Sample._003_PreserveWhiteSpaces"
+        mc:Ignorable="d"
+        Title="MainWindow" Width="400" Height="300">
+    
+    <Grid>
+        <Grid.Resources>
+            <sys:String x:Key="StringResource" xml:space="preserve">문자열     띄우기</sys:String>
+        </Grid.Resources>
+
+        <StackPanel Margin="10">
+
+            <!--Property element-->
+            <TextBlock>문자열     띄우기</TextBlock>
+
+            <!--xml:space="preserve"-->
+            <TextBlock xml:space="preserve">문자열     띄우기</TextBlock>
+
+            <TextBlock xml:space="preserve">
+                <TextBlock.Text>
+                    문자열     띄우기
+                </TextBlock.Text>
+            </TextBlock>
+            
+            <!--Property-->
+            <TextBlock Text="문자열     띄우기"/>
+
+            <!--String resource-->
+            <TextBlock Text="{StaticResource StringResource}"/>
+            
+            <TextBlock>
+                <TextBlock.Text>
+                    <Binding Source="{StaticResource StringResource}"/>
+                </TextBlock.Text>
+            </TextBlock>
+        </StackPanel>
+        
+    </Grid>
+</Window>

@@ -1,0 +1,47 @@
+﻿<Window x:Class="Sample._008_DeriveStyle.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sample._008_DeriveStyle"
+        mc:Ignorable="d"
+        Title="MainWindow" Width="400" Height="200">
+    <Grid x:Name="grdTest">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.Resources>
+            <Style x:Key="Style_ControlBase">
+                <Setter Property="Control.Width" Value="60"/>
+                <Setter Property="Control.Height" Value="30"/>
+            </Style>
+            
+            <SolidColorBrush x:Key="Color_Background_ReadOnlyTextBox" Color="LightGray"/>
+            <Style x:Key="Style_ReadOnlyTextBox" TargetType="TextBox" 
+                   BasedOn="{StaticResource Style_ControlBase}">
+                <Setter Property="IsReadOnly" Value="True"/>
+                <Setter Property="Background" Value="{StaticResource Color_Background_ReadOnlyTextBox}"/>
+                <Setter Property="Width" Value="100"/>
+            </Style>
+
+            <Style TargetType="TextBox" 
+                   BasedOn="{StaticResource Style_ControlBase}">
+                <Setter Property="IsReadOnly" Value="True"/>
+                <Setter Property="Background" Value="{StaticResource Color_Background_ReadOnlyTextBox}"/>
+                <Setter Property="Width" Value="100"/>
+            </Style>
+        </Grid.Resources>
+
+        <TextBox Grid.Column="0" Style="{StaticResource Style_ControlBase}"
+                 Text="TextBox" x:Name="txbTest"/>
+
+        <TextBox Grid.Column="1" Style="{StaticResource Style_ReadOnlyTextBox}"
+                 Text="ReadOnlyTextBox"/>
+        
+        <TextBox Grid.Column="2" 
+                 Text="ReadOnlyTextBox"/>
+    </Grid>
+</Window>
