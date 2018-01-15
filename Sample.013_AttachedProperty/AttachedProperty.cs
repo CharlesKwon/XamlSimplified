@@ -89,6 +89,11 @@ namespace Sample.AttachedProperty
 
         #endregion
 
+        // FontFamily
+        // FontWeight
+        // FontStyle
+        // FontStretch
+
         #region Event Handler
 
         private static void panel_Loaded(object sender, RoutedEventArgs e)

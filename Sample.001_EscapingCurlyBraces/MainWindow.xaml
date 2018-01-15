@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sample._001_EscapingCurlyBraces"
         mc:Ignorable="d"
-        Title="MainWindow" Width="400" Height="300">
+        Title="MainWindow" Width="400" Height="200">
     <Grid>
 
         <StackPanel Margin="10">
