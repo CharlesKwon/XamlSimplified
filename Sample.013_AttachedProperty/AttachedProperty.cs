@@ -9,10 +9,11 @@ namespace Sample.AttachedProperty
         #region ChildrenFontSize
 
         public static readonly DependencyProperty ChildrenFontSizeProperty =
-            DependencyProperty.RegisterAttached("ChildrenFontSize",
+            DependencyProperty.RegisterAttached(
+                "ChildrenFontSize",
                 typeof(double),
                 typeof(SetFontPanel),
-            new PropertyMetadata((double)12, OnChildrenFontSizePropertyChanged));
+                new PropertyMetadata((double)12, OnChildrenFontSizePropertyChanged));
 
         public static double GetChildrenFontSize(DependencyObject dp)
         {
@@ -141,7 +142,15 @@ namespace Sample.AttachedProperty
 
                     ctr.FontSize = GetChildrenFontSize(panel);
                     ctr.Foreground = GetChildrenForeground(panel);
+                    // FontFamily
+                    // FontWeight
+                    // FontStyle
+                    // FontStretch
                 }
+                //else if (또 다른 컨트롤을 추가)
+                //{
+
+                //}
             }
         }
 

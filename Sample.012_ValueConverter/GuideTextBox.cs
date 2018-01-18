@@ -14,7 +14,8 @@ namespace Sample.Control
         }
 
         public static readonly DependencyProperty GuideTextProperty =
-            DependencyProperty.Register("GuideText", 
+            DependencyProperty.Register(
+                "GuideText", 
                 typeof(object), 
                 typeof(GuideTextBox), 
                 new PropertyMetadata("Guide Text"));
