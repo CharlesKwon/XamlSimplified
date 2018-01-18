@@ -13,6 +13,19 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
+        <!--<Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="1"/>
+        </Grid>
+
+        <Canvas>
+            <TextBlock Canvas.Left="100" Canvas.Top="50"/>
+        </Canvas>-->
+
         <!-- Local property-->
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Content="Local property"/>
@@ -28,6 +41,7 @@
                     atcp:SetFontPanel.ChildrenFontSize="15" 
                     atcp:SetFontPanel.ChildrenForeground="Red" 
                     atcp:SetFontPanel.Attach="True">
+                    <!-- [Prefix].[ClassName].[AttachedProperty] -->
             <Label Content="Attached property"/>
             <TextBlock Text="Lorem Ipsum is simply "/>
             <TextBlock Text="dummy text of the"/>
