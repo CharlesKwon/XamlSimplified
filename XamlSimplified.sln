@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.012_ValueConverter",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.013_AttachedProperty", "Sample.013_AttachedProperty\Sample.013_AttachedProperty.csproj", "{D7493525-2329-4230-A341-1E224908B60B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.015_TwoContentsButton", "Sample.015_TwoContentsButton\Sample.015_TwoContentsButton.csproj", "{5428F11E-A468-4B63-B6E2-CAAD48A19211}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{D7493525-2329-4230-A341-1E224908B60B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7493525-2329-4230-A341-1E224908B60B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7493525-2329-4230-A341-1E224908B60B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5428F11E-A468-4B63-B6E2-CAAD48A19211}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5428F11E-A468-4B63-B6E2-CAAD48A19211}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5428F11E-A468-4B63-B6E2-CAAD48A19211}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5428F11E-A468-4B63-B6E2-CAAD48A19211}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

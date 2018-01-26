@@ -38,7 +38,8 @@ namespace Sample.AttachedProperty
         #region ChildrenForeground
 
         public static readonly DependencyProperty ChildrenForegroundProperty =
-            DependencyProperty.RegisterAttached("ChildrenForeground",
+            DependencyProperty.RegisterAttached(
+                "ChildrenForeground",
                 typeof(Brush),
                 typeof(SetFontPanel),
             new PropertyMetadata(null));
@@ -58,7 +59,8 @@ namespace Sample.AttachedProperty
         #region Attach
 
         public static readonly DependencyProperty AttachProperty =
-            DependencyProperty.RegisterAttached("Attach",
+            DependencyProperty.RegisterAttached(
+                "Attach",
                 typeof(bool),
                 typeof(SetFontPanel),
             new PropertyMetadata(false, OnAttachPropertyChanged));

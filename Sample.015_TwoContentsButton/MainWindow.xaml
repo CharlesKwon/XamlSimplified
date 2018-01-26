@@ -1,0 +1,138 @@
+﻿<Window x:Class="Sample._015_TwoContentsButton.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:atcp="clr-namespace:Sample.AttachedProperty"
+        xmlns:ctr="clr-namespace:Sample.Control"
+        xmlns:local="clr-namespace:Sample._015_TwoContentsButton"
+        mc:Ignorable="d"
+        Title="MainWindow" Width="400" Height="200">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="20"/>
+            </Style>
+        </Grid.Resources>
+        
+        <!-- Property -->
+        <Button>
+            <StackPanel Margin="5">
+                <TextBlock Text="Menu01" FontWeight="Bold"/>
+                <TextBlock Text="Lorem Ipsum is simply" TextWrapping="Wrap"/>
+            </StackPanel>
+        </Button>
+
+        <!-- Property element -->
+        <!--<Button>
+            <Button.Content>
+                <StackPanel Margin="5">
+                    <TextBlock Text="Menu01" FontWeight="Bold"/>
+                    <TextBlock Text="Lorem Ipsum is simply" TextWrapping="Wrap"/>
+                </StackPanel>
+            </Button.Content>
+        </Button>-->
+        
+        <!-- 기본 제공 템플릿 -->
+        <!--<Button Content="Menu01">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Background="{TemplateBinding Background}" 
+                            SnapsToDevicePixels="True">
+                        <ContentPresenter x:Name="contentPresenter" 
+                                          ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                          Content="{TemplateBinding Content}" 
+                                          ContentStringFormat="{TemplateBinding ContentStringFormat}" 
+                                          Focusable="False" 
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Margin="{TemplateBinding Padding}" 
+                                          RecognizesAccessKey="True" 
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>-->
+
+        <!-- 간소화한 기본 제공 템플릿 -->
+        <!--<Button Content="Menu02" Grid.Column="1">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Background="{TemplateBinding Background}">
+                        <StackPanel HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Margin="5">
+                            <ContentPresenter Content="{TemplateBinding Content}"/>
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>-->
+
+        <!-- Tag -->
+        <Button Content="Menu02" Tag="Lorem Ipsum is simply" Grid.Column="1">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Background="{TemplateBinding Background}">
+                        <StackPanel HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Margin="5">
+                            <ContentPresenter Content="{TemplateBinding Content}"/>
+                            <TextBlock Text="{TemplateBinding Tag}" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <!-- Dependency property -->
+        <!--<ctr:TwoContentsButton Content="Menu03" SecondContent="Lorem Ipsum is simply" Margin="20" Grid.Column="2">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Background="{TemplateBinding Background}">
+                        <StackPanel HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Margin="5">
+                            <ContentPresenter Content="{TemplateBinding Content}"/>
+                            <TextBlock Text="{Binding SecondContent, RelativeSource={RelativeSource TemplatedParent}}" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </ctr:TwoContentsButton>-->
+        
+        <!-- Attached property -->
+        <Button Content="Menu03" atcp:AP_TwoContentsButton.SecondContent="Lorem Ipsum is simply" Grid.Column="2">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Background="{TemplateBinding Background}">
+                        <StackPanel HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Margin="5">
+                            <ContentPresenter Content="{TemplateBinding Content}"/>
+                            <TextBlock Text="{Binding (atcp:AP_TwoContentsButton.SecondContent), RelativeSource={RelativeSource TemplatedParent}}" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <!--<TextBlock Text="{Binding Path=(atcp:AP_TwoContentsButton.SecondContent), RelativeSource={RelativeSource TemplatedParent}}" TextWrapping="Wrap"/>-->
+        <!--<TextBlock Text="{Binding Path=(atcp:AP_TwoContentsButton.SecondContent), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" TextWrapping="Wrap"/>-->
+    </Grid>
+</Window>
