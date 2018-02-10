@@ -31,6 +31,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.013_AttachedProperty
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.015_TwoContentsButton", "Sample.015_TwoContentsButton\Sample.015_TwoContentsButton.csproj", "{5428F11E-A468-4B63-B6E2-CAAD48A19211}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.017_ControlTemplate", "Sample.016_ControlTemplate\Sample.017_ControlTemplate.csproj", "{89978D79-829A-43F2-B9D5-B69BDDF008C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.020_GoToScrollStartScrollViewer", "Sample.020_GoToScrollStartScrollViewer\Sample.020_GoToScrollStartScrollViewer.csproj", "{D94FACDF-119D-4EA0-B32D-D33A625AD64F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +97,14 @@ Global
 		{5428F11E-A468-4B63-B6E2-CAAD48A19211}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5428F11E-A468-4B63-B6E2-CAAD48A19211}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5428F11E-A468-4B63-B6E2-CAAD48A19211}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89978D79-829A-43F2-B9D5-B69BDDF008C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89978D79-829A-43F2-B9D5-B69BDDF008C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89978D79-829A-43F2-B9D5-B69BDDF008C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89978D79-829A-43F2-B9D5-B69BDDF008C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D94FACDF-119D-4EA0-B32D-D33A625AD64F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D94FACDF-119D-4EA0-B32D-D33A625AD64F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D94FACDF-119D-4EA0-B32D-D33A625AD64F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D94FACDF-119D-4EA0-B32D-D33A625AD64F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
