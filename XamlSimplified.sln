@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Blend for Visual Studio 15
-VisualStudioVersion = 15.0.27130.2020
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.001_EscapingCurlyBraces", "Sample.001_EscapingCurlyBraces\Sample.001_EscapingCurlyBraces.csproj", "{3B5C27C9-DFBB-4EDE-BE7F-9CD8AC1A8A5F}"
 EndProject
@@ -33,7 +33,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.015_TwoContentsButto
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.017_ControlTemplate", "Sample.016_ControlTemplate\Sample.017_ControlTemplate.csproj", "{89978D79-829A-43F2-B9D5-B69BDDF008C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.020_GoToScrollStartScrollViewer", "Sample.020_GoToScrollStartScrollViewer\Sample.020_GoToScrollStartScrollViewer.csproj", "{D94FACDF-119D-4EA0-B32D-D33A625AD64F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.020_ScrollToHomeScrollViewer", "Sample.020_GoToScrollStartScrollViewer\Sample.020_ScrollToHomeScrollViewer.csproj", "{D94FACDF-119D-4EA0-B32D-D33A625AD64F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
