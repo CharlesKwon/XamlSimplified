@@ -1,0 +1,129 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+        xmlns:bhv="clr-namespace:Sample.Behavior" 
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
+        x:Class="Sample._024_CustomTriggerAction.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Width="400" Height="200">
+
+    <Window.Resources>
+        <Storyboard x:Key="StoryboardHour">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="txtHour">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1.1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <SineEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <SineEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="StoryboardMinute">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="txtMinute">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1.1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <SineEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <SineEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="StoryboardSecond">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="txtSecond">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1.1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <SineEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <SineEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="FontSize" Value="100"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Style>
+        </Grid.Resources>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!-- 시 -->
+        <TextBlock x:Name="txtHour" Text="00" RenderTransformOrigin="0.5,1">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+            <i:Interaction.Triggers>
+                <bhv:TextChangedTrigger>
+                    <ei:ControlStoryboardAction Storyboard="{StaticResource StoryboardHour}"/>
+                    <bhv:AddZeroAction/>
+                </bhv:TextChangedTrigger>
+            </i:Interaction.Triggers>
+        </TextBlock>
+        
+        <!-- 분 -->
+        <TextBlock x:Name="txtMinute" Text="00" Grid.Column="1" RenderTransformOrigin="0.5,1">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+            <i:Interaction.Triggers>
+                <bhv:TextChangedTrigger>
+                    <ei:ControlStoryboardAction Storyboard="{StaticResource StoryboardMinute}"/>
+                    <bhv:AddZeroAction/>
+                </bhv:TextChangedTrigger>
+            </i:Interaction.Triggers>
+        </TextBlock>
+        
+        <!-- 초 -->
+        <TextBlock x:Name="txtSecond" Text="00" Grid.Column="2" RenderTransformOrigin="0.5,1">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+            <i:Interaction.Triggers>
+                <bhv:TextChangedTrigger>
+                    <ei:ControlStoryboardAction Storyboard="{StaticResource StoryboardSecond}"/>
+                    <bhv:AddZeroAction/>
+                </bhv:TextChangedTrigger>
+            </i:Interaction.Triggers>
+        </TextBlock>
+        
+        <!-- 중간 쌍점 -->
+        <TextBlock Text=":" HorizontalAlignment="Right" Margin="0,0,-10,0"/>
+        <TextBlock Text=":" HorizontalAlignment="Right" Margin="0,0,-10,0" Grid.Column="1"/>
+    </Grid>
+</Window>
