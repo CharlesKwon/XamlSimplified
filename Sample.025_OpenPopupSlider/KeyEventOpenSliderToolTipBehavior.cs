@@ -36,9 +36,12 @@ namespace Sample.Behavior
         protected override void OnDetaching()
         {
             AssociatedObject.Loaded -= AssociatedObject_Loaded;
-            _thumb.DragCompleted -= ValueThumb_DragCompleted;
-            _thumb.DragStarted -= ValueThumb_DragStarted;
             _thumb.DragDelta -= ValueThumb_DragDelta;
+            _thumb.DragStarted -= ValueThumb_DragStarted;
+            _thumb.DragCompleted -= ValueThumb_DragCompleted;
+
+            AssociatedObject.PreviewKeyDown -= Slider_PreviewKeyDown;
+            AssociatedObject.KeyUp -= Slider_KeyUp;
 
             _thumb = null;
             _popup = null;
@@ -48,23 +51,22 @@ namespace Sample.Behavior
 
         private void AssociatedObject_Loaded(object sender, RoutedEventArgs e)
         {
-            var _slider = AssociatedObject as Slider;
-            if (_slider == null) return;
-            _popup = GetVisualChild<Popup>(_slider);
-            _thumb = GetVisualChild<Thumb>(_slider);
+            //var _slider = AssociatedObject as Slider;
+            //if (_slider == null) return;
+            _popup = GetVisualChild<Popup>(AssociatedObject);
+            _thumb = GetVisualChild<Thumb>(AssociatedObject);
             if (_thumb == null || _popup == null) return;
             
             _thumb.DragStarted += ValueThumb_DragStarted;
             _thumb.DragDelta += ValueThumb_DragDelta;
             _thumb.DragCompleted += ValueThumb_DragCompleted;
 
-            _slider.PreviewKeyDown += Slider_PreviewKeyDown;
-            _slider.KeyUp += Slider_KeyUp;
+            AssociatedObject.PreviewKeyDown += Slider_PreviewKeyDown;
+            AssociatedObject.KeyUp += Slider_KeyUp;
         }
 
         private void ValueThumb_DragDelta(object sender, DragDeltaEventArgs e)
         {
-            _popup.VerticalOffset = VerticalOffset + _thumb.ActualHeight;
             _popup.HorizontalOffset += +e.HorizontalChange;
             _popup.HorizontalOffset += -e.HorizontalChange;
             _changedHorizontalOffset = e.HorizontalChange;
@@ -95,8 +97,10 @@ namespace Sample.Behavior
             }
         }
 
-        private void Slider_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        private async void Slider_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
+            await Task.Delay(100);
+
             _popup.IsOpen = false;
         }
 
