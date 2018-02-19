@@ -15,6 +15,8 @@ namespace Sample.Behavior
 
         protected override void OnDetaching()
         {
+            AssociatedObject.Loaded -= AssociatedObject_Loaded;
+
             base.OnDetaching();
         }
         

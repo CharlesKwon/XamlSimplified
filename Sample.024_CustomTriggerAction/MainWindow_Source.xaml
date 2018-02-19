@@ -5,7 +5,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
         xmlns:bhv="clr-namespace:Sample.Behavior" 
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
-        x:Class="Sample._024_CustomTriggerAction.MainWindow"
+        x:Class="Sample._024_CustomTriggerAction.MainWindow_Source"
         mc:Ignorable="d"
         Title="MainWindow" Width="400" Height="200">
 

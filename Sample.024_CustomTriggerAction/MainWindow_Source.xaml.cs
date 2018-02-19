@@ -7,9 +7,9 @@ namespace Sample._024_CustomTriggerAction
     /// <summary>
     /// MainWindow.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow_Source : Window
     {
-        public MainWindow()
+        public MainWindow_Source()
         {
             InitializeComponent();
 
