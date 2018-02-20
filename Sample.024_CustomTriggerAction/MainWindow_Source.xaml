@@ -69,58 +69,13 @@
         </Grid.ColumnDefinitions>
 
         <!-- 시 -->
-        <TextBlock x:Name="txtHour" Text="0" RenderTransformOrigin="0.5,1">
-            <TextBlock.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </TextBlock.RenderTransform>
-            <i:Interaction.Triggers>
-                <bhv:TimeChangedTrigger SpecialTime="3">
-                    <ei:ControlStoryboardAction Storyboard="{StaticResource StoryboardHour}"/>
-                    <bhv:ChangeForegroundAction Foreground="Red"/>
-                </bhv:TimeChangedTrigger>
-            </i:Interaction.Triggers>
-        </TextBlock>
-        
+        <TextBlock x:Name="txtHour" Text="0"/>
+
         <!-- 분 -->
-        <TextBlock x:Name="txtMinute" Text="0" Grid.Column="1" RenderTransformOrigin="0.5,1">
-            <TextBlock.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </TextBlock.RenderTransform>
-            <i:Interaction.Triggers>
-                <bhv:TimeChangedTrigger SpecialTime="5">
-                    <ei:ControlStoryboardAction Storyboard="{StaticResource StoryboardSecond}"/>
-                    <bhv:ChangeForegroundAction Foreground="Green"/>
-                </bhv:TimeChangedTrigger>
-            </i:Interaction.Triggers>
-        </TextBlock>
-        
+        <TextBlock x:Name="txtMinute" Text="0" Grid.Column="1"/>
+
         <!-- 초 -->
-        <TextBlock x:Name="txtSecond" Text="0" Grid.Column="2" RenderTransformOrigin="0.5,1">
-            <TextBlock.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </TextBlock.RenderTransform>
-            <i:Interaction.Triggers>
-                <bhv:TimeChangedTrigger SpecialTime="7">
-                    <ei:ControlStoryboardAction Storyboard="{StaticResource StoryboardSecond}"/>
-                    <bhv:ChangeForegroundAction Foreground="Blue"/>
-                </bhv:TimeChangedTrigger>
-            </i:Interaction.Triggers>
-        </TextBlock>
+        <TextBlock x:Name="txtSecond" Text="0" Grid.Column="2"/>
 
         <!-- Separation points -->
         <TextBlock Text=":" HorizontalAlignment="Right" Margin="0,0,-10,0"/>
