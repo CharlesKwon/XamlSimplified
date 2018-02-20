@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Sample._025_OpenPopupSlider
+namespace Sample._026_OpenPopupSlider
 {
     /// <summary>
     /// MainWindow.xaml에 대한 상호 작용 논리

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Sample._025_OpenPopupSlider.Properties
+namespace Sample._026_OpenPopupSlider.Properties
 {
 
 
@@ -44,7 +44,7 @@ namespace Sample._025_OpenPopupSlider.Properties
             {
                 if ((resourceMan == null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Sample._025_OpenPopupSlider.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Sample._026_OpenPopupSlider.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

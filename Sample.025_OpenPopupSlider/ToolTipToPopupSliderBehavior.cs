@@ -7,12 +7,18 @@ using System.Windows.Media;
 
 namespace Sample.Behavior
 {
-    public class KeyEventOpenSliderToolTipBehavior : Behavior<Slider>
+    public class ToolTipToPopupSliderBehavior : Behavior<Slider>
     {
+        #region Variable
+
         private Thumb _thumb;
         private Popup _popup;
         private double _changedHorizontalOffset;
-        
+
+        #endregion
+
+        #region VerticalOffset : 팝업 세로 위치
+
         public int VerticalOffset
         {
             get { return (int)GetValue(VerticalOffsetProperty); }
@@ -23,8 +29,12 @@ namespace Sample.Behavior
             DependencyProperty.Register(
                 "VerticalOffset", 
                 typeof(int), 
-                typeof(KeyEventOpenSliderToolTipBehavior), 
+                typeof(ToolTipToPopupSliderBehavior), 
                 new PropertyMetadata(0));
+
+        #endregion
+
+        #region Proteced method 
 
         protected override void OnAttached()
         {
@@ -36,9 +46,9 @@ namespace Sample.Behavior
         protected override void OnDetaching()
         {
             AssociatedObject.Loaded -= AssociatedObject_Loaded;
-            _thumb.DragDelta -= ValueThumb_DragDelta;
-            _thumb.DragStarted -= ValueThumb_DragStarted;
-            _thumb.DragCompleted -= ValueThumb_DragCompleted;
+            _thumb.DragDelta -= Thumb_DragDelta;
+            _thumb.DragStarted -= Thumb_DragStarted;
+            _thumb.DragCompleted -= Thumb_DragCompleted;
 
             AssociatedObject.PreviewKeyDown -= Slider_PreviewKeyDown;
             AssociatedObject.KeyUp -= Slider_KeyUp;
@@ -49,40 +59,50 @@ namespace Sample.Behavior
             base.OnDetaching();
         }
 
+        #endregion
+
+        #region Event handler 
+
         private void AssociatedObject_Loaded(object sender, RoutedEventArgs e)
         {
-            //var _slider = AssociatedObject as Slider;
-            //if (_slider == null) return;
             _popup = GetVisualChild<Popup>(AssociatedObject);
             _thumb = GetVisualChild<Thumb>(AssociatedObject);
             if (_thumb == null || _popup == null) return;
             
-            _thumb.DragStarted += ValueThumb_DragStarted;
-            _thumb.DragDelta += ValueThumb_DragDelta;
-            _thumb.DragCompleted += ValueThumb_DragCompleted;
+            _thumb.DragStarted += Thumb_DragStarted;
+            _thumb.DragDelta += Thumb_DragDelta;
+            _thumb.DragCompleted += Thumb_DragCompleted;
 
             AssociatedObject.PreviewKeyDown += Slider_PreviewKeyDown;
             AssociatedObject.KeyUp += Slider_KeyUp;
         }
 
-        private void ValueThumb_DragDelta(object sender, DragDeltaEventArgs e)
+        #endregion
+
+        #region Event handler < Mouse
+
+        private void Thumb_DragDelta(object sender, DragDeltaEventArgs e)
         {
             _popup.HorizontalOffset += +e.HorizontalChange;
             _popup.HorizontalOffset += -e.HorizontalChange;
             _changedHorizontalOffset = e.HorizontalChange;
         }
 
-        private void ValueThumb_DragStarted(object sender, DragStartedEventArgs e)
+        private void Thumb_DragStarted(object sender, DragStartedEventArgs e)
         {
             _popup.VerticalOffset = VerticalOffset + _thumb.ActualHeight;
             _popup.IsOpen = true;
         }
 
-        private void ValueThumb_DragCompleted(object sender, DragCompletedEventArgs e)
+        private void Thumb_DragCompleted(object sender, DragCompletedEventArgs e)
         {
             _popup.IsOpen = false;
         }
-        
+
+        #endregion
+
+        #region Event handler < Keyboard
+
         private async void Slider_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             await Task.Delay(100);
@@ -104,7 +124,10 @@ namespace Sample.Behavior
             _popup.IsOpen = false;
         }
 
-        // UIHelper
+        #endregion
+
+        #region UI Helper < Common method
+
         public static T GetVisualChild<T>(DependencyObject parent) where T : Visual
         {
             if (parent == null) return null;
@@ -128,5 +151,7 @@ namespace Sample.Behavior
 
             return child;
         }
+        
+        #endregion
     }
 }

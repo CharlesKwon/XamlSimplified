@@ -1,7 +1,7 @@
-﻿<Application x:Class="Sample._025_OpenPopupSlider.App"
+﻿<Application x:Class="Sample._026_OpenPopupSlider.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Sample._025_OpenPopupSlider"
+             xmlns:local="clr-namespace:Sample._026_OpenPopupSlider"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

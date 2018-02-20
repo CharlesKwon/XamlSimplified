@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Sample._025_OpenPopupSlider.Properties
+namespace Sample._026_OpenPopupSlider.Properties
 {
 
 
