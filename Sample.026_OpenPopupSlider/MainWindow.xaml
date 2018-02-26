@@ -5,9 +5,11 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
         xmlns:bhv="clr-namespace:Sample.Behavior" 
         xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" 
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
         x:Class="Sample._026_OpenPopupSlider.MainWindow" 
         mc:Ignorable="d"
         Title="MainWindow" Width="400" Height="200">
+    
     <Window.Resources>
         <!-- ToolTip 스타일 & 템플릿 -->
         <ControlTemplate x:Key="Template_ToolTip" TargetType="{x:Type ToolTip}">
@@ -20,8 +22,6 @@
             </StackPanel>
         </ControlTemplate>
         <Style x:Key="Style_ToolTip" TargetType="{x:Type ToolTip}">
-            <Setter Property="PlacementTarget" Value="{Binding ElementName=Thumb}"/>
-            <Setter Property="Placement" Value="Center"/>
             <Setter Property="Template" Value="{StaticResource Template_ToolTip}"/>
         </Style>
 
@@ -37,6 +37,8 @@
         <SolidColorBrush x:Key="SliderThumb.Static.Border" Color="#FFACACAC"/>
         <SolidColorBrush x:Key="SliderThumb.Track.Border" Color="#FFD6D6D6"/>
         <SolidColorBrush x:Key="SliderThumb.Track.Background" Color="#FFE7EAEA"/>
+
+        <!-- 투명 반복 버튼 스타일-->
         <Style x:Key="RepeatButtonTransparent" TargetType="{x:Type RepeatButton}">
             <Setter Property="OverridesDefaultStyle" Value="true"/>
             <Setter Property="Background" Value="Transparent"/>
@@ -51,7 +53,7 @@
             </Setter>
         </Style>
 
-        <!-- Thumb 가로 템플릿-->
+        <!-- Slider > Thumb 가로형 템플릿-->
         <ControlTemplate x:Key="SliderThumbHorizontalTop" TargetType="{x:Type Thumb}">
             <Grid HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center">
                 <Path x:Name="grip" Data="M 0,6 C0,6 5.5,0 5.5,0 5.5,0 11,6 11,6 11,6 11,18 11,18 11,18 0,18 0,18 0,18 0,6 0,6 z" Fill="{StaticResource SliderThumb.Static.Background}" Stretch="Fill" SnapsToDevicePixels="True" Stroke="{StaticResource SliderThumb.Static.Border}" StrokeThickness="1" UseLayoutRounding="True" VerticalAlignment="Center"/>
@@ -109,7 +111,7 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
-        <!-- Thumb 세로 템플릿 -->
+        <!-- Slider > Thumb 세로형 템플릿 -->
         <ControlTemplate x:Key="SliderThumbVerticalLeft" TargetType="{x:Type Thumb}">
             <Grid HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center">
                 <Path x:Name="grip" Data="M 6,11 C6,11 0,5.5 0,5.5 0,5.5 6,0 6,0 6,0 18,0 18,0 18,0 18,11 18,11 18,11 6,11 6,11 z" Fill="{StaticResource SliderThumb.Static.Background}" Stretch="Fill" Stroke="{StaticResource SliderThumb.Static.Border}"/>
@@ -168,7 +170,7 @@
             </ControlTemplate.Triggers>
         </ControlTemplate>
 
-        <!-- Slider 가로 템플릿 -->
+        <!-- Slider 가로형 템플릿 -->
         <ControlTemplate x:Key="SliderHorizontal" TargetType="{x:Type Slider}">
             <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
                 <Grid>
@@ -197,14 +199,13 @@
                                     <ToolTip x:Name="PART_ThumbToolTip" 
                                              Template="{StaticResource Template_ToolTip}"
                                              Content="{TemplateBinding Value}" 
-                                             PlacementTarget="{Binding ElementName=Thumb}"
                                              Placement="Center" VerticalOffset="-30"
-                                             ContentStringFormat="N0" StaysOpen="True"/>
+                                             ContentStringFormat="N0"/>
                                 </Thumb.ToolTip>
                             </Thumb>
                         </Track.Thumb>
                     </Track>
-                    
+
                     <!-- 툴팁 팝업 -->
                     <Popup x:Name="PART_ToolTipPopup" 
                            AllowsTransparency="True"
@@ -251,7 +252,7 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
-        <!-- Slider 세로 템플릿 -->
+        <!-- Slider 세로형 템플릿 -->
         <ControlTemplate x:Key="SliderVertical" TargetType="{x:Type Slider}">
             <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
                 <Grid>
@@ -326,6 +327,15 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
+        <!-- ToolTip balloon -->
+        <!--<StackPanel HorizontalAlignment="Left">
+            <Border CornerRadius="5" Background="SkyBlue">
+                <ContentPresenter HorizontalAlignment="Center" Margin="10,5"/>
+            </Border>
+            <ed:RegularPolygon Fill="SkyBlue" Margin="0,-8,0,0" Panel.ZIndex="-1" 
+                               PointCount="4" Width="10" Height="15"/>
+        </StackPanel>-->
+
         <!-- ToolTip of Thumb -->
         <Slider Value="5" VerticalAlignment="Center" Margin="10,0" 
                 Style="{DynamicResource Style_Slider}"/>
@@ -334,20 +344,8 @@
         <Slider Value="5" VerticalAlignment="Center" Margin="10,0" Grid.Row="1" 
                 AutoToolTipPlacement="TopLeft">
             <Slider.Resources>
-                <Style TargetType="{x:Type ToolTip}">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type ToolTip}">
-                                <StackPanel>
-                                    <Border CornerRadius="5" Background="SkyBlue">
-                                        <ContentPresenter HorizontalAlignment="Center" Margin="10,5"/>
-                                    </Border>
-                                    <ed:RegularPolygon Fill="SkyBlue" Margin="0,-8,0,0" Panel.ZIndex="-1" 
-                                               PointCount="4" Width="10" Height="15"/>
-                                </StackPanel>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
+                <Style TargetType="{x:Type ToolTip}" BasedOn="{StaticResource Style_ToolTip}">
+                    <!--<Setter Property="Template" Value="{StaticResource Template_ToolTip}"/>-->
                 </Style>
             </Slider.Resources>
         </Slider>

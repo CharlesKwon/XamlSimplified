@@ -17,6 +17,8 @@ namespace Sample.Behavior
 
         #endregion
 
+        #region Property
+
         #region VerticalOffset : 팝업 세로 위치
 
         public int VerticalOffset
@@ -31,6 +33,8 @@ namespace Sample.Behavior
                 typeof(int), 
                 typeof(ToolTipToPopupSliderBehavior), 
                 new PropertyMetadata(0));
+
+        #endregion
 
         #endregion
 
@@ -67,6 +71,8 @@ namespace Sample.Behavior
         {
             _popup = GetVisualChild<Popup>(AssociatedObject);
             _thumb = GetVisualChild<Thumb>(AssociatedObject);
+            //_popup = GetVisualChildByName<Popup>(AssociatedObject, "PART_ToolTipPopup");
+            //_thumb = GetVisualChildByName<Thumb>(AssociatedObject, "Thumb");
             if (_thumb == null || _popup == null) return;
             
             _thumb.DragStarted += Thumb_DragStarted;
@@ -76,8 +82,6 @@ namespace Sample.Behavior
             AssociatedObject.PreviewKeyDown += Slider_PreviewKeyDown;
             AssociatedObject.KeyUp += Slider_KeyUp;
         }
-
-        #endregion
 
         #region Event handler < Mouse
 
@@ -103,17 +107,28 @@ namespace Sample.Behavior
 
         #region Event handler < Keyboard
 
+        int i = 0;
+
         private async void Slider_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            await Task.Delay(100);
+            i++;
 
-            if (e.Key == System.Windows.Input.Key.Left ||
-                e.Key == System.Windows.Input.Key.Right)
+            if (i % 2 == 0)
             {
-                _popup.VerticalOffset = VerticalOffset + _thumb.ActualHeight;
-                _popup.HorizontalOffset += +_changedHorizontalOffset;
-                _popup.HorizontalOffset += -_changedHorizontalOffset;
-                _popup.IsOpen = true;
+                e.Handled = true;
+            }
+            else
+            {
+                await Task.Delay(100);
+
+                if (e.Key == System.Windows.Input.Key.Left ||
+                    e.Key == System.Windows.Input.Key.Right)
+                {
+                    _popup.VerticalOffset = VerticalOffset + _thumb.ActualHeight;
+                    _popup.HorizontalOffset += +_changedHorizontalOffset;
+                    _popup.HorizontalOffset += -_changedHorizontalOffset;
+                    _popup.IsOpen = true;
+                }
             }
         }
 
@@ -126,7 +141,9 @@ namespace Sample.Behavior
 
         #endregion
 
-        #region UI Helper < Common method
+        #endregion
+
+        #region UI Helper < Common 
 
         public static T GetVisualChild<T>(DependencyObject parent) where T : Visual
         {
@@ -151,7 +168,31 @@ namespace Sample.Behavior
 
             return child;
         }
-        
+
+        public static T GetVisualChildByName<T>(DependencyObject parent, string childName) where T : Visual
+        {
+            if (parent == null) return null;
+
+            T child = default(T);
+
+            int numVisuals = VisualTreeHelper.GetChildrenCount(parent);
+            for (int i = 0; i < numVisuals; i++)
+            {
+                Visual v = (Visual)VisualTreeHelper.GetChild(parent, i);
+                child = v as T;
+                if (child == null)
+                {
+                    child = GetVisualChildByName<T>(v, childName);
+                }
+                if (child != null)
+                {
+                    break;
+                }
+            }
+
+            return child;
+        }
+
         #endregion
     }
 }

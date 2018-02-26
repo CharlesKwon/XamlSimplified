@@ -57,6 +57,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="MainWindow_Slider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow_Source.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -64,6 +72,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow_Slider.xaml.cs">
+      <DependentUpon>MainWindow_Slider.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow_Source.xaml.cs">
+      <DependentUpon>MainWindow_Source.xaml</DependentUpon>
     </Compile>
     <Compile Include="ToolTipToPopupSliderBehavior.cs" />
     <Compile Include="MainWindow.xaml.cs">
