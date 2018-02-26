@@ -1,0 +1,148 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sample._028_DataTemplate"
+        xmlns:cvt="clr-namespace:Sample.Converter" 
+        xmlns:slt="clr-namespace:Sample.Selector" 
+        x:Class="Sample._028_DataTemplate.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Width="400" Height="222">
+
+    <Window.Resources>
+        <cvt:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <cvt:BooleanToBrushConverter x:Key="BooleanToBrushConverter" 
+                                     TrueBrush="#FFFFEB33" FalseBrush="White"/>
+        
+        <!-- Style & Template Selector -->
+        <DataTemplate x:Key="DataTemplate_Message_Left" DataType="{x:Type local:ExchangeMessage}">
+            <StackPanel>
+                <TextBlock Text="{Binding Name}" 
+                           Visibility="{Binding IsMine, Converter={StaticResource BooleanToVisibilityConverter}, 
+                                                        ConverterParameter=inverted}"/>
+                <Border Background="{Binding IsMine, Converter={StaticResource BooleanToBrushConverter}}" 
+                        CornerRadius="5" Margin="0,3">
+                    <TextBlock Text="{Binding Message}" TextWrapping="Wrap" Grid.Column="1" FontSize="11" Margin="5,3,5,7"/>
+                </Border>
+                <TextBlock x:Name="PART_Time" Text="{Binding ConfirmedTime, StringFormat=hh:mm:ss}" FontSize="8"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="DataTemplate_Message_Right" DataType="{x:Type local:ExchangeMessage}">
+            <StackPanel>
+                <TextBlock Text="{Binding Name}" 
+                           Visibility="{Binding IsMine, Converter={StaticResource BooleanToVisibilityConverter}, 
+                                                        ConverterParameter=inverted}"/>
+                <Border Background="{Binding IsMine, Converter={StaticResource BooleanToBrushConverter}}" 
+                        CornerRadius="5" Margin="0,3">
+                    <TextBlock Text="{Binding Message}" TextWrapping="Wrap" Grid.Column="1" FontSize="11" Margin="5,3,5,7"/>
+                </Border>
+                <TextBlock x:Name="PART_Time" Text="{Binding ConfirmedTime, StringFormat=hh:mm:ss}" FontSize="8"
+                           HorizontalAlignment="Right"/>
+            </StackPanel>
+        </DataTemplate>
+        <Style x:Key="Style_Message_Left" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <ContentPresenter x:Name="PART_ListBoxItem" 
+                                          HorizontalAlignment="Left" 
+                                          Margin="5,0,20,5"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="Style_Message_Right" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <ContentPresenter x:Name="PART_ListBoxItem" 
+                                          HorizontalAlignment="Right" 
+                                          Margin="20,0,5,5"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <slt:MessageStyleSelector x:Key="MessageStyleSelector" 
+                                  PropertyToCheck="IsMine" PropertyValue="True"
+                                  LeftStyle="{StaticResource Style_Message_Left}"
+                                  RightStyle="{StaticResource Style_Message_Right}"/>
+        <slt:MessageTemplateSelector x:Key="MessageTemplateSelector" 
+                                     PropertyToCheck="IsMine" PropertyValue="True" 
+                                     LeftTemplate="{StaticResource DataTemplate_Message_Left}" 
+                                     RightTemplate="{StaticResource DataTemplate_Message_Right}"/>
+
+        <!-- Style & Template Trigger -->
+        <DataTemplate x:Key="DataTemplate_Message" DataType="{x:Type local:ExchangeMessage}">
+            <StackPanel>
+                <TextBlock Text="{Binding Name}" 
+                           Visibility="{Binding IsMine, Converter={StaticResource BooleanToVisibilityConverter}, 
+                                                        ConverterParameter=inverted}"/>
+                <Border Background="{Binding IsMine, Converter={StaticResource BooleanToBrushConverter}}" 
+                        CornerRadius="5" Margin="0,3">
+                    <TextBlock Text="{Binding Message}" TextWrapping="Wrap" Grid.Column="1" FontSize="11" Margin="5,3,5,7"/>
+                </Border>
+                <TextBlock x:Name="PART_Time" Text="{Binding ConfirmedTime, StringFormat=hh:mm:ss}" FontSize="8"/>
+            </StackPanel>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding IsMine}" Value="True">
+                    <Setter Property="HorizontalAlignment" Value="Right" TargetName="PART_Time"/>
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+        <Style x:Key="Style_Message" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <ContentPresenter x:Name="PART_ListBoxItem" 
+                                          HorizontalAlignment="Left" 
+                                          Margin="5,0,20,5"/>
+                        <ControlTemplate.Triggers>
+                            <DataTrigger Binding="{Binding IsMine}" Value="True">
+                                <Setter Property="HorizontalAlignment" Value="Right" TargetName="PART_ListBoxItem"/>
+                                <Setter Property="Margin" Value="20,0,5,5" TargetName="PART_ListBoxItem"/>
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <Style TargetType="{x:Type ListBox}">
+                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+                <Setter Property="Background" Value="#FFB2C7D9"/>
+            </Style>
+        </Grid.Resources>
+
+        <!-- Style & Template Selector -->
+        <ListBox ItemContainerStyleSelector="{StaticResource MessageStyleSelector}" 
+                 ItemTemplateSelector="{StaticResource MessageTemplateSelector}">
+            <ListBox.ItemsSource>
+                <x:Array Type="{x:Type local:ExchangeMessage}">
+                    <local:ExchangeMessage Name="X Friend" Message="Charles~ R u there?" ConfirmedTime="2018-03-01 12:24:33" IsMine="False"/>
+                    <local:ExchangeMessage Name="Me" Message="Yeah~ i'm here. What's up?" ConfirmedTime="2018-03-01 12:25:44" IsMine="True"/>
+                    <local:ExchangeMessage Name="X Friend" Message="Do u have time tonight? Let's get it!" ConfirmedTime="2018-03-01 12:26:55" IsMine="False"/>
+                </x:Array>
+            </ListBox.ItemsSource>
+        </ListBox>
+
+        <!-- Style & Template Trigger -->
+        <ListBox ItemTemplate="{DynamicResource DataTemplate_Message}" 
+                 ItemContainerStyle="{DynamicResource Style_Message}"
+                 Grid.Column="1">
+            <ListBox.ItemsSource>
+                <x:Array Type="{x:Type local:ExchangeMessage}">
+                    <local:ExchangeMessage Name="X Friend" Message="Charles~ R u there?" ConfirmedTime="2018-03-01 12:24:33" IsMine="False"/>
+                    <local:ExchangeMessage Name="Me" Message="Yeah~ i'm here. What's up?" ConfirmedTime="2018-03-01 12:25:44" IsMine="True"/>
+                    <local:ExchangeMessage Name="X Friend" Message="Do u have time tonight? Let's get it!" ConfirmedTime="2018-03-01 12:26:55" IsMine="False"/>
+                </x:Array>
+            </ListBox.ItemsSource>
+        </ListBox>
+    </Grid>
+</Window>
