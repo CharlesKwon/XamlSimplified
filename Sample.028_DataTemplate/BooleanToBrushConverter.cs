@@ -5,6 +5,7 @@ using System.Windows.Media;
 
 namespace Sample.Converter
 {
+    [ValueConversion(typeof(bool), typeof(Brush))]
     public class BooleanToBrushConverter : IValueConverter
     {
         public Brush FalseBrush { get; set; }

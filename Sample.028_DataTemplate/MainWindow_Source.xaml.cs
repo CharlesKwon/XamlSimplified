@@ -15,20 +15,12 @@ using System.Windows.Shapes;
 
 namespace Sample._028_DataTemplate
 {
-    public class ExchangeMessage
-    {
-        public bool IsMine { get; set; }            // 메시지 구분자
-        public string Name { get; set; }            // 발신자 이름
-        public string Message { get; set; }         // 발신 내용
-        public DateTime ConfirmedTime { get; set; } // 확인 시간
-    }
-
     /// <summary>
     /// MainWindow.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow_Source : Window
     {
-        public MainWindow()
+        public MainWindow_Source()
         {
             InitializeComponent();
         }
