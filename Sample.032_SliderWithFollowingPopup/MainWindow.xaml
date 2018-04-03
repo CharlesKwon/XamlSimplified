@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" 
-        xmlns:ctr="clr-namespace:Sample.Control"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+        xmlns:bhv="clr-namespace:Sample.Behavior" 
         mc:Ignorable="d"
         Title="MainWindow" Width="400" Height="200">
 
@@ -184,10 +185,10 @@
                     </Track>
 
                     <!-- 툴팁 팝업 -->
-                    <ctr:FollowingPopup x:Name="PART_ToolTipPopup" 
-                               PlacementTarget="{Binding ElementName=Thumb}" 
-                               Placement="Center" VerticalOffset="-30" 
-                               AllowsTransparency="True">
+                    <Popup x:Name="PART_ToolTipPopup" 
+                           PlacementTarget="{Binding ElementName=Thumb}" 
+                           Placement="Center" VerticalOffset="-30" 
+                           AllowsTransparency="True">
                         <StackPanel>
                             <Border CornerRadius="5" Background="SkyBlue">
                                 <TextBlock Text="{Binding Value, ElementName=PART_Track, StringFormat=N0}" 
@@ -196,16 +197,16 @@
                             <ed:RegularPolygon Fill="SkyBlue" Margin="0,-8,0,0" Panel.ZIndex="-1" 
                                                PointCount="4" Width="10" Height="15"/>
                         </StackPanel>
-                    </ctr:FollowingPopup>
+                    </Popup>
                 </Grid>
             </Border>
             <ControlTemplate.Triggers>
-                <Trigger SourceName="Thumb" Property="IsDragging" Value="True">
-                        <Setter Value="True" TargetName="PART_ToolTipPopup" Property="IsOpen"/>
-                    </Trigger>
-                    <Trigger SourceName="Thumb" Property="IsDragging" Value="False">
-                        <Setter Value="False" TargetName="PART_ToolTipPopup" Property="IsOpen"/>
-                    </Trigger>
+                <!--<Trigger SourceName="Thumb" Property="IsDragging" Value="True">
+                    <Setter Value="True" TargetName="PART_ToolTipPopup" Property="IsOpen"/>
+                </Trigger>
+                <Trigger SourceName="Thumb" Property="IsDragging" Value="False">
+                    <Setter Value="False" TargetName="PART_ToolTipPopup" Property="IsOpen"/>
+                </Trigger>-->
 
                 <Trigger Property="TickPlacement" Value="TopLeft">
                     <Setter Property="Visibility" TargetName="TopTick" Value="Visible"/>
@@ -298,8 +299,15 @@
     </Window.Resources>
 
     <Grid>
-        <!-- Following Popup : Custom Control-->
-        <Slider Value="5" VerticalAlignment="Center" Margin="10,0" Grid.Row="2"
-                Style="{DynamicResource Style_Slider}"/>
+        <!-- New Behavior -->
+        <!--SmallChange="1" LargeChange="1"-->
+        <Slider Value="5" Minimum="0" Maximum="10" IsSnapToTickEnabled="True"
+                TickFrequency="1" TickPlacement="Both" 
+                VerticalAlignment="Center" Margin="10,0" Grid.Row="2" 
+                Style="{DynamicResource Style_Slider}">
+            <i:Interaction.Behaviors>
+                <bhv:ToolTipToPopupSliderBehavior/>
+            </i:Interaction.Behaviors>
+        </Slider>
     </Grid>
 </Window>
