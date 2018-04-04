@@ -301,9 +301,9 @@
     <Grid>
         <!-- New Behavior -->
         <!--SmallChange="1" LargeChange="1"-->
-        <Slider Value="5" Minimum="0" Maximum="10" IsSnapToTickEnabled="True"
+        <Slider Value="5" Minimum="0" Maximum="100" IsSnapToTickEnabled="True"
                 TickFrequency="1" TickPlacement="Both" 
-                VerticalAlignment="Center" Margin="10,0" Grid.Row="2" 
+                VerticalAlignment="Center" Margin="10,0" 
                 Style="{DynamicResource Style_Slider}">
             <i:Interaction.Behaviors>
                 <bhv:ToolTipToPopupSliderBehavior/>

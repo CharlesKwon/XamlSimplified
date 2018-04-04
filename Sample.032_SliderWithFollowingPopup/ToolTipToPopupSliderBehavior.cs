@@ -28,11 +28,14 @@ namespace Sample.Behavior
 
         protected override void OnDetaching()
         {
+            if (AssociatedObject == null) return;
             AssociatedObject.Loaded -= AssociatedObject_Loaded;
+            AssociatedObject.PreviewKeyUp -= Slider_PreviewKeyUp;
+
+            if (_thumb == null) return;
             //_thumb.QueryCursor -= _thumb_QueryCursor;
             //_thumb.MouseMove -= _thumb_MouseMove;
             _thumb.MouseLeave -= _thumb_MouseLeave;
-            AssociatedObject.PreviewKeyUp -= Slider_PreviewKeyUp;
 
             _thumb = null;
             _popup = null;
@@ -46,17 +49,17 @@ namespace Sample.Behavior
 
         private void AssociatedObject_Loaded(object sender, RoutedEventArgs e)
         {
-            _popup = GetVisualChild<Popup>(AssociatedObject);
             _thumb = GetVisualChild<Thumb>(AssociatedObject);
-            //_popup = GetVisualChildByName<Popup>(AssociatedObject, "PART_ToolTipPopup");
+            _popup = GetVisualChild<Popup>(AssociatedObject);
             //_thumb = GetVisualChildByName<Thumb>(AssociatedObject, "Thumb");
-            if (_thumb == null || _popup == null) return;
+            //_popup = GetVisualChildByName<Popup>(AssociatedObject, "PART_ToolTipPopup");
 
+            if (_thumb == null) return;
             //_thumb.QueryCursor += _thumb_QueryCursor;
             //_thumb.MouseMove += _thumb_MouseMove;
             _thumb.MouseLeave += _thumb_MouseLeave;
-            AssociatedObject.PreviewKeyUp += Slider_PreviewKeyUp;
 
+            AssociatedObject.PreviewKeyUp += Slider_PreviewKeyUp;
             AssociatedObject.ValueChanged += AssociatedObject_ValueChanged;
         }
 
