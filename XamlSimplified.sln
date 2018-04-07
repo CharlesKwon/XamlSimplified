@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Blend for Visual Studio 15
+# Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.001_EscapingCurlyBraces", "Sample.001_EscapingCurlyBraces\Sample.001_EscapingCurlyBraces.csproj", "{3B5C27C9-DFBB-4EDE-BE7F-9CD8AC1A8A5F}"
@@ -41,9 +41,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.024_CustomTriggerAct
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.026_OpenPopupSlider", "Sample.026_OpenPopupSlider\Sample.026_OpenPopupSlider.csproj", "{CBE3DC15-EB04-4396-B745-6E088B5F87AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.028_DataTemplate", "Sample.028_DataTemplate\Sample.028_DataTemplate.csproj", "{BC3A1437-FBF1-43CD-81D2-B5E646DCD5BE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.029_SliderWithFollowingPopup", "Sample.029_SliderWithFollowingPopup\Sample.029_SliderWithFollowingPopup.csproj", "{6864352F-FA45-4AD2-8345-B1E9C79603AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.032_SliderWithFallowingPopup", "Sample.032_SliderWithFollowingPopup\Sample.032_SliderWithFollowingPopup.csproj", "{6864352F-FA45-4AD2-8345-B1E9C79603AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.030_DataTemplate", "Sample.030_DataTemplate\Sample.030_DataTemplate.csproj", "{BC3A1437-FBF1-43CD-81D2-B5E646DCD5BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

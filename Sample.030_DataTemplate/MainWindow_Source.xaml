@@ -2,18 +2,34 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Sample._028_DataTemplate"
+        xmlns:local="clr-namespace:Sample._030_DataTemplate"
         xmlns:cvt="clr-namespace:Sample.Converter" 
         xmlns:slt="clr-namespace:Sample.Selector" 
-        x:Class="Sample._028_DataTemplate.MainWindow"
+        x:Class="Sample._030_DataTemplate.MainWindow_Source"
         mc:Ignorable="d"
         Title="MainWindow" Width="400" Height="222">
 
     <Window.Resources>
+        
+        <!-- Converter -->
         <cvt:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <cvt:BooleanToBrushConverter x:Key="BooleanToBrushConverter" 
                                      TrueBrush="#FFFFEB33" FalseBrush="White"/>
         
+        <!-- DataTemplate-->
+        <DataTemplate x:Key="DataTemplate_Message_Basic">
+            <StackPanel>
+                <TextBlock Text="{Binding Name}" 
+                           Visibility="{Binding IsMine, Converter={StaticResource BooleanToVisibilityConverter}, 
+                                                        ConverterParameter=inverted}"/>
+                <Border Background="{Binding IsMine, Converter={StaticResource BooleanToBrushConverter}}" 
+                        CornerRadius="5" Margin="0,3">
+                    <TextBlock Text="{Binding Message}" TextWrapping="Wrap" Grid.Column="1" FontSize="11" Margin="5,3,5,7"/>
+                </Border>
+                <TextBlock Text="{Binding ConfirmedTime, StringFormat=hh:mm:ss}" FontSize="8"/>
+            </StackPanel>
+        </DataTemplate>
+
         <!-- Template Selector -->
         <DataTemplate x:Key="DataTemplate_Message_Left" DataType="{x:Type local:ExchangeMessage}">
             <StackPanel>
@@ -44,8 +60,8 @@
                                      PropertyToCheck="IsMine" PropertyValue="True" 
                                      LeftTemplate="{StaticResource DataTemplate_Message_Left}" 
                                      RightTemplate="{StaticResource DataTemplate_Message_Right}"/>
-
-        <!-- Style  Selector -->
+        
+        <!-- Style Selector -->
         <Style x:Key="Style_Message_Left" TargetType="{x:Type ListBoxItem}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -74,7 +90,7 @@
                                   RightStyle="{StaticResource Style_Message_Right}"/>
 
         <!-- Style & Template Trigger -->
-        <DataTemplate x:Key="DataTemplate_Message" DataType="{x:Type local:ExchangeMessage}">
+        <DataTemplate x:Key="DataTemplate_Message">
             <StackPanel>
                 <TextBlock x:Name="PART_Name" Text="{Binding Name}"/>
                 <Border x:Name="PART_Background" Background="White" CornerRadius="5" Margin="0,3">
@@ -123,9 +139,32 @@
             </Style>
         </Grid.Resources>
 
+        <!-- DisplayMemberPath -->
+        <!--<ListBox DisplayMemberPath="Message">
+            <ListBox.ItemsSource>
+                <x:Array Type="{x:Type local:ExchangeMessage}">
+                    <local:ExchangeMessage Name="X Friend" Message="Charles~ R u there?" ConfirmedTime="2018-03-01 12:24:33" IsMine="False"/>
+                    <local:ExchangeMessage Name="Me" Message="Yeah~ i'm here. What's up?" ConfirmedTime="2018-03-01 12:25:44" IsMine="True"/>
+                    <local:ExchangeMessage Name="X Friend" Message="Do u have time tonight? Let's get it!" ConfirmedTime="2018-03-01 12:26:55" IsMine="False"/>
+                </x:Array>
+            </ListBox.ItemsSource>
+        </ListBox>-->
+
+        <!-- DataTemplate -->
+        <!--<ListBox ItemTemplate="{StaticResource DataTemplate_Message_Basic}">
+            <ListBox.ItemsSource>
+                <x:Array Type="{x:Type local:ExchangeMessage}">
+                    <local:ExchangeMessage Name="X Friend" Message="Charles~ R u there?" ConfirmedTime="2018-03-01 12:24:33" IsMine="False"/>
+                    <local:ExchangeMessage Name="Me" Message="Yeah~ i'm here. What's up?" ConfirmedTime="2018-03-01 12:25:44" IsMine="True"/>
+                    <local:ExchangeMessage Name="X Friend" Message="Do u have time tonight? Let's get it!" ConfirmedTime="2018-03-01 12:26:55" IsMine="False"/>
+                </x:Array>
+            </ListBox.ItemsSource>
+        </ListBox>-->
+        
         <!-- Style & Template Selector -->
-        <ListBox ItemContainerStyleSelector="{StaticResource MessageStyleSelector}" 
-                 ItemTemplateSelector="{StaticResource MessageTemplateSelector}">
+        <ListBox ItemTemplateSelector="{StaticResource MessageTemplateSelector}" 
+                 ItemContainerStyleSelector="{StaticResource MessageStyleSelector}" 
+                 Grid.Column="0">
             <ListBox.ItemsSource>
                 <x:Array Type="{x:Type local:ExchangeMessage}">
                     <local:ExchangeMessage Name="X Friend" Message="Charles~ R u there?" ConfirmedTime="2018-03-01 12:24:33" IsMine="False"/>
@@ -136,8 +175,8 @@
         </ListBox>
 
         <!-- Style & Template Trigger -->
-        <ListBox ItemTemplate="{DynamicResource DataTemplate_Message}" 
-                 ItemContainerStyle="{DynamicResource Style_Message}"
+        <ListBox ItemTemplate="{StaticResource DataTemplate_Message}" 
+                 ItemContainerStyle="{StaticResource Style_Message}"
                  Grid.Column="1">
             <ListBox.ItemsSource>
                 <x:Array Type="{x:Type local:ExchangeMessage}">

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Sample._028_DataTemplate
+namespace Sample._030_DataTemplate
 {
     public class ExchangeMessage
     {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Sample._028_DataTemplate.Properties
+namespace Sample._030_DataTemplate.Properties
 {
 
 
