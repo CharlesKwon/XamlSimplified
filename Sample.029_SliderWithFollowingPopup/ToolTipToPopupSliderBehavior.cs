@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
@@ -68,14 +67,14 @@ namespace Sample.Behavior
             _popup.HorizontalOffset = 0;
             _popup.IsOpen = true;
 
-            var xValRatio = AssociatedObject.ActualWidth / (AssociatedObject.Maximum - AssociatedObject.Minimum);
+            var xMoveOffset = AssociatedObject.ActualWidth / (AssociatedObject.Maximum - AssociatedObject.Minimum);
             if (e.NewValue > e.OldValue && e.NewValue != AssociatedObject.Maximum)
             {
-                _popup.HorizontalOffset += xValRatio;
+                _popup.HorizontalOffset += xMoveOffset;
             }
             else if (e.NewValue < e.OldValue && e.OldValue != AssociatedObject.Maximum)
             {
-                _popup.HorizontalOffset -= xValRatio;
+                _popup.HorizontalOffset -= xMoveOffset;
             }
         }
 
